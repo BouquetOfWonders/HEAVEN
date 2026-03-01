@@ -1,0 +1,26 @@
+1 Generate the maze:
+	1 Pick a starting cell:
+		1 Mark it visited
+		2 Mark it as the SPAWN
+	2 If any neighbouring cell hasnt been visited:
+		1 Pick a random cell that hasnt been visited
+		2 Remove the wall inbetween the two cells
+		3 Add the current cell to the stack
+		4 Make the chosen cell the current cell and mark it visited
+		5 Condition MakeSpecial = true
+	3 If the current cell has no unvisited neigbours:
+		1 If Condition MakeSpecial == true:
+			1 Mark current cell as SPECIAL
+			2 Condition MakeSpecial = false
+		2 Take the top cell from the stack and make it current
+	4 Repeat from #2 until there are no cells left
+	5 Mark the final cell as EXIT
+
+2 Handle the logic of SPECIAL cells:
+	1 If there are no SPECIAL type cells, clear the maze and start at 1
+	2 Choose a random cell from the group, it becomes a BOSS mark
+	3 While there are SPECIAL cells left pick a random cell and choose one at random:
+			1 Make it an ENEMY cell
+			2 Make it a LOOT cell
+			
+3 Send out a signal out to Enemy Handler to prepare enemy logic

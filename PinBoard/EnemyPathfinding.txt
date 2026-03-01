@@ -1,0 +1,6 @@
+1 Initialise AStar2d
+2 Set points for every place in the maze
+3 Iterate through every point:
+	1 Check if there is a wall, if no, dont connect
+	2 Do this for all 4 sides
+USE AStar2d 

@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bl5epajii2iy4"]
+
+[ext_resource type="PackedScene" uid="uid://bf4ti6iqfe02x" path="res://Scenes/ActiveSegment.tscn" id="1_r150o"]
+[ext_resource type="Script" uid="uid://28gq0nl7pkhb" path="res://Scripts/Test.gd" id="2_idj7w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_idj7w"]
+font_size = 22
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Node" type="Node" unique_id=1595037252]
+
+[node name="PopupWindow" type="Window" parent="." unique_id=1320051189]
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(300, 150)
+visible = false
+exclusive = true
+unresizable = true
+always_on_top = true
+popup_wm_hint = true
+minimize_disabled = true
+maximize_disabled = true
+force_native = true
+script = ExtResource("2_idj7w")
+
+[node name="Control" type="Control" parent="PopupWindow" unique_id=358562596]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 150.0
+
+[node name="ColorRect" type="ColorRect" parent="PopupWindow/Control" unique_id=1810163014]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 150.0
+color = Color(0.5689727, 0.56897277, 0.5689727, 1)
+
+[node name="Basic" type="Label" parent="PopupWindow/Control" unique_id=1226416982]
+layout_mode = 0
+offset_right = 199.0
+offset_bottom = 23.0
+text = " An error has occured:"
+label_settings = SubResource("LabelSettings_idj7w")
+
+[node name="ErrorDescription" type="Label" parent="PopupWindow/Control" unique_id=1093488761]
+layout_mode = 0
+offset_top = 50.0
+offset_right = 300.0
+offset_bottom = 150.0
+label_settings = SubResource("LabelSettings_idj7w")
+
+[node name="ActiveSegmentRoot" parent="." unique_id=978330136 instance=ExtResource("1_r150o")]
+
+[connection signal="close_requested" from="PopupWindow" to="PopupWindow" method="_on_close_requested"]
