@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://c7btqxeg1ggbe" path="res://Assets/Music/test.wav" id="1_crsur"]
 [ext_resource type="Script" uid="uid://dj8bgapye6pja" path="res://Scripts/MazegenScript.gd" id="1_ed6u5"]
 [ext_resource type="TileSet" uid="uid://dd1mcsgngtnap" path="res://Assets/Walls/WallTileset.tres" id="2_5a1xi"]
-[ext_resource type="Script" uid="uid://bw05sdjdsok24" path="res://Scripts/MovementCheck.gd" id="4_y7bxx"]
+[ext_resource type="AudioStream" uid="uid://b2yy3mmqlfixf" path="res://Assets/Music/tick.wav" id="5_jp8td"]
 
 [node name="ActiveSegmentRoot" type="Node2D" unique_id=978330136]
 
@@ -17,8 +17,13 @@ script = ExtResource("1_c5iuo")
 [node name="Player" type="Node" parent="." unique_id=598417402]
 script = ExtResource("1_5a1xi")
 
-[node name="MovementCheck" type="Node" parent="Player" unique_id=516645517]
-script = ExtResource("4_y7bxx")
+[node name="TEST" type="AudioStreamPlayer" parent="." unique_id=291840055]
+stream = ExtResource("5_jp8td")
+volume_db = 10.0
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1880297946]
+anchor_mode = 0
+zoom = Vector2(0.5, 0.5)
 
 [node name="Maze" type="Node2D" parent="." unique_id=1290746428]
 script = ExtResource("1_ed6u5")
@@ -28,9 +33,3 @@ tile_set = ExtResource("2_5a1xi")
 
 [node name="SpecialMap" type="TileMapLayer" parent="Maze" unique_id=96787642]
 tile_set = ExtResource("2_5a1xi")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1880297946]
-anchor_mode = 0
-zoom = Vector2(0.5, 0.5)
-
-[connection signal="Beat" from="AudioStreamPlayer" to="Player/MovementCheck" method="_on_audio_stream_player_beat"]
