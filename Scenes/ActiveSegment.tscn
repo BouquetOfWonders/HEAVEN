@@ -11,7 +11,6 @@
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=588977738]
 stream = ExtResource("1_crsur")
-autoplay = true
 script = ExtResource("1_c5iuo")
 
 [node name="Player" type="Node" parent="." unique_id=598417402]
@@ -32,4 +31,7 @@ script = ExtResource("1_ed6u5")
 tile_set = ExtResource("2_5a1xi")
 
 [node name="SpecialMap" type="TileMapLayer" parent="Maze" unique_id=96787642]
+tile_set = ExtResource("2_5a1xi")
+
+[node name="EntityMap" type="TileMapLayer" parent="Maze" unique_id=1840469630]
 tile_set = ExtResource("2_5a1xi")

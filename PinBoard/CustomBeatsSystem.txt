@@ -1,4 +1,0 @@
-There will be 2 variations of beat systems
-
-1 - Always on - All beats always activate
-2 - Pattern - An array containing a beat pattern. If the array ends, repeat from start

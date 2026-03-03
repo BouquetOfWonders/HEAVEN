@@ -22,7 +22,7 @@ var SPAWN: Vector2i
 var RNG = RandomNumberGenerator.new()
 
 func _ready() -> void:
-	RNG.seed = hash("awesome")
+	RNG.seed = hash("453")
 	PathHandler.Map = $MazeMap
 	generateMaze(false)
 	
@@ -30,7 +30,7 @@ func generateMaze(DoGraphics: bool) -> void:
 	var unvisitedList := []
 	var specialList := []
 	var stack := []
-	SPAWN = Vector2i(0, 0)
+	SPAWN = Vector2i(5, 3)
 	if SPAWN.y >= height or SPAWN.x >= width:
 		Global.ErrorLog.emit(" Spawn outisde of borders \n Can't Generate Maze")
 		return
@@ -73,7 +73,12 @@ func generateMaze(DoGraphics: bool) -> void:
 	generateSpecial(specialList, SPAWN)
 	PathHandler.GenerateStruckture(width, height)
 	MazeGenerated.emit()
-	await get_tree().create_timer(3).timeout
+	await get_tree().process_frame
+
+	var Pathways = PathHandler.TilesFromSpeed(10, SPAWN)
+	print(Pathways)
+	for i in Pathways.size():
+		$EntityMap.set_cell(Pathways[i], 1, Vector2i(3, 0))
 
 func checkNeighbors(currentCell, unvisitedList) -> Array:
 	var list := []

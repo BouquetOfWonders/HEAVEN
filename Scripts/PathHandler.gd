@@ -66,6 +66,29 @@ func _HandleConnections(PointID: int, PointAtlasID: int, x: int) -> void:
 		Pathfinding.connect_points(PointID, PointID - 1)
 	return
 	
+	
+func TilesFromSpeed(speed: int, position: Vector2i):
+	var ID = _PathfindingCoordstoID(position, XGlobal)
+	var PathwaysID = Pathfinding.get_point_connections(ID)
+	var AlreadyChecked: Array
+	for i in speed:
+		for j in PathwaysID.size():
+			if not AlreadyChecked.has(PathwaysID[j]):
+				AlreadyChecked.append(PathwaysID[j])
+				PathwaysID.append_array(Pathfinding.get_point_connections(PathwaysID[j]))
+			
+	
+	PathwaysID = DeleteDuplicates(PathwaysID)
+	var Pathways : Array = []
+	for i in PathwaysID.size():
+		Pathways.append(_IDtoPathfindingCords(PathwaysID[i], XGlobal))
+		
+		
+	Pathways.erase(position)
+	
+	return Pathways
+	
+	
 func _coordstoID(coords: Vector2i) -> int:
 	return coords.x + coords.y * 4
 	
@@ -74,3 +97,11 @@ func _PathfindingCoordstoID(coords: Vector2i, x: int) -> int:
  
 func _IDtoPathfindingCords(ID: int, x) -> Vector2i:
 	return Vector2i(ID % x, floor(ID/x))
+	
+func DeleteDuplicates(array: Array) -> Array:
+	var unique: Array = []
+
+	for i in array.size():
+		if not unique.has(array[i]):
+			unique.append(array[i])
+	return unique
